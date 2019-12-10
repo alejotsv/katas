@@ -4,3 +4,31 @@
 // Step 1: check length of number. The length determines how many numbers need to be added.
 // Step 3: add zeroes as many times as the variable value.
 // Step 2: set a variable as the length and decrease within the for loop.
+
+function expandedForm(num) {
+  let numStr = num.toString();
+  let zeroes = numStr.length;
+  let result = '';
+
+  // TODO: not adding a + at the end when the last number is a zero
+
+  for (let i=0; i<numStr.length-1; i++){
+    if (numStr.charAt(i) !== '0'){
+      let element = `${numStr.charAt(i)}`;
+        for (let j=0; j<numStr.length-1-i;j++){
+          element += '0';
+        }
+        element += ' + '
+      result += element;
+    }
+  }
+
+  if(numStr.charAt(numStr.length-1) !== '0'){
+    result += numStr.charAt(numStr.length-1);
+  }
+
+  return result;
+
+}
+
+expandedForm(450350);

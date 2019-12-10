@@ -10,25 +10,24 @@ function expandedForm(num) {
   let zeroes = numStr.length;
   let result = '';
 
-  // TODO: not adding a + at the end when the last number is a zero
-
-  for (let i=0; i<numStr.length-1; i++){
-    if (numStr.charAt(i) !== '0'){
-      let element = `${numStr.charAt(i)}`;
-        for (let j=0; j<numStr.length-1-i;j++){
-          element += '0';
-        }
-        element += ' + '
-      result += element;
-    }
-  }
-
   if(numStr.charAt(numStr.length-1) !== '0'){
+    for (let i=0; i<numStr.length-1; i++){
+      if (numStr.charAt(i) !== '0'){
+        let element = `${numStr.charAt(i)}`;
+          for (let j=0; j<numStr.length-1-i;j++){
+            element += '0';
+          }
+          element += ' + '
+        result += element;
+      }
+    }
     result += numStr.charAt(numStr.length-1);
+  } else {    
+    console.log('last number is zero');
   }
 
   return result;
 
 }
 
-expandedForm(450350);
+expandedForm(4503520);

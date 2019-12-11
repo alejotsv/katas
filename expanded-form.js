@@ -7,27 +7,27 @@
 
 function expandedForm(num) {
   let numStr = num.toString();
-  let zeroes = numStr.length;
+  let numArr = [];  
   let result = '';
 
-  if(numStr.charAt(numStr.length-1) !== '0'){
-    for (let i=0; i<numStr.length-1; i++){
-      if (numStr.charAt(i) !== '0'){
-        let element = `${numStr.charAt(i)}`;
-          for (let j=0; j<numStr.length-1-i;j++){
-            element += '0';
-          }
-          element += ' + '
-        result += element;
+  for (let i=0; i<numStr.length; i++) {
+    if (numStr[i] !== '0') {
+      let element = numStr[i];
+      for (let j=1; j<numStr.length-i; j++){
+        element += '0';
       }
+      numArr.push(element);
     }
-    result += numStr.charAt(numStr.length-1);
-  } else {    
-    console.log('last number is zero');
   }
+
+  for (let k=0; k<numArr.length-1; k++){
+    result += `${numArr[k]} + `;
+  }
+
+  result += numArr.pop();
 
   return result;
 
 }
 
-expandedForm(4503520);
+expandedForm(515);

@@ -2,6 +2,9 @@
 // There is an array with some numbers. All numbers are equal except for one. Try to find it!
 
 // TODO: Optimize function to run faster
+// Use splice() to take the the first element and then indexOf() to find a second ocurrence
+// Proceed until there are no more instances
+// Start again (always from index 0), until the first indexOf() is -1
 
 function findUniq(arr) {
   let finalArr = [];

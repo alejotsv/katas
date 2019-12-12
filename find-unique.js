@@ -25,3 +25,15 @@ function findUniq(arr) {
 let myArr = [3, 3, 5, 5, 1, 1, 4, 6];
 
 findUniq(myArr);
+
+function simpleFind(arr){
+  let num = arr.splice(0,1)[0];
+  let index = 0;
+  
+  if (num >= 0){
+    console.log('not unique');
+  }
+
+}
+
+simpleFind(myArr);

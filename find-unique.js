@@ -27,13 +27,22 @@ let myArr = [3, 3, 5, 5, 1, 1, 4, 6];
 findUniq(myArr);
 
 function simpleFind(arr){
-  let num = arr.splice(0,1)[0];
-  let index = 0;
+  let result = null;  
+  let num;
   
-  if (num >= 0){
-    console.log('not unique');
-  }
+  while (result === null) {
+    num = arr.splice(0,1)[0];    
+    if (arr.indexOf(num) === -1){
+      result = num;      
+    } else {
+        while (arr.indexOf(num) >= 0){       
+        arr.splice(arr.indexOf(num),1);
+      }
+  } 
 
+
+}
+  return result;
 }
 
 simpleFind(myArr);

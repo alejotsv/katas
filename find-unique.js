@@ -1,10 +1,7 @@
 // Instructions:
 // There is an array with some numbers. All numbers are equal except for one. Try to find it!
 
-// TODO: Optimize function to run faster
-// Use splice() to take the the first element and then indexOf() to find a second ocurrence
-// Proceed until there are no more instances
-// Start again (always from index 0), until the first indexOf() is -1
+// TODO: Still need to optimize more
 
 function findUniq(arr) {
   let finalArr = [];
@@ -46,3 +43,27 @@ function simpleFind(arr){
 }
 
 simpleFind(myArr);
+
+function simplerFindUnique(arr) {
+
+  // Set an array with all unique values
+  let uniqueArray = [...new Set(arr)];
+  let firstIndex;
+  
+  // Loop through the unique values array (shorter array)
+  for (let i=0; i<uniqueArray.length; i++){
+    // Find the first index in the original array of each unique value
+    firstIndex = arr.indexOf(uniqueArray[i]);
+    // Remove the first iteration of the value
+    arr.splice(firstIndex,1);
+    // Check if the value is repeated in the array
+    if (arr.indexOf(uniqueArray[i]) === -1){
+      return uniqueArray[i];
+    }
+  }
+
+}
+
+let thisArr = [2,5,6,1,1,5,7,6,6,7,3,3,2,1,1,2];
+
+simplerFindUniq(thisArr);

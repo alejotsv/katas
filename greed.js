@@ -22,17 +22,12 @@
 
 function score(dice) {
 
-  let diceObj = {
-    one: dice.filter((num) => num === 1),
-    two: dice.filter((num) => num === 2),
-    three: dice.filter((num) => num === 3),
-    four: dice.filter((num) => num === 4),
-    five: dice.filter((num) => num === 5),
-    six: dice.filter((num) => num === 6),
+  let newArr = [];
+  for (let i=1; i<=6; i++){
+    newArr.push(dice.filter((num) => num === i))
   }
 
-
-  console.log(diceObj['one'].length);
+  console.log(newArr);
   
 }
 

@@ -20,14 +20,19 @@
 // In some languages, it is possible to mutate the input to the function. This is something that you should never do. If you mutate the input, you will not be able to pass all the tests.
 
 
-function score(dice) {  
-  let one = dice.filter((num) => num === 1);
-  let two = dice.filter((num) => num === 2);
-  let three = dice.filter((num) => num === 3);
-  let four = dice.filter((num) => num === 4);
-  let five = dice.filter((num) => num === 5);
-  let six = dice.filter((num) => num === 6);
+function score(dice) {
 
+  let diceObj = {
+    one: dice.filter((num) => num === 1),
+    two: dice.filter((num) => num === 2),
+    three: dice.filter((num) => num === 3),
+    four: dice.filter((num) => num === 4),
+    five: dice.filter((num) => num === 5),
+    six: dice.filter((num) => num === 6),
+  }
+
+
+  console.log(diceObj['one'].length);
   
 }
 

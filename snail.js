@@ -10,12 +10,36 @@ function snail(arr) {
   let result = [];
 
   addFirstRow(arr,result);
+  addEachLast(arr,result);
+  addReverseLastRow(arr,result);
+  console.log(result);
+  console.log(arr);
+
 }
 
 // Function to add to result first row of array and delete first row from original array
 function addFirstRow(arr,result) {
-  result = result.concat(arr[0]);
+  result.push(...arr[0]);
   arr.splice(0,1);
+}
+
+// Function to add the last element of each row, until the second to last row, and delete each element
+function addEachLast(arr,result){
+  let currentArr;
+  for (let i=0; i<arr.length-1; i++){
+    currentArr = arr[i];
+    result.push(currentArr[currentArr.length-1])    
+  }
+}
+
+// Function to add to result the last row in reversed order and delete the last row
+function addReverseLastRow(arr,result) {
+  result.push(...arr[arr.length-1].reverse());
+  arr.splice(arr.length-1,1);  
+}
+
+function addEachFirst(arr,result) {
+  
 }
   
   

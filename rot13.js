@@ -6,3 +6,21 @@
 
 // rot13("EBG13 rknzcyr.") == "ROT13 example.";
 // rot13("This is my first ROT13 excercise!" == "Guvf vf zl svefg EBG13 rkprepvfr!"
+
+function rot13(str) {
+  let result = '';
+  for (let i=0; i<str.length; i++){
+    if ((str.charCodeAt(i)>=65 && str.charCodeAt(i)<= 77) || (str.charCodeAt(i)>=97 && str.charCodeAt(i)<=109)){
+      result += String.fromCharCode(str.charCodeAt(i)+13);
+    } else if ((str.charCodeAt(i)>=78 && str.charCodeAt(i)<= 90) || (str.charCodeAt(i)>=110 && str.charCodeAt(i)<=122)){
+      result += String.fromCharCode(str.charCodeAt(i)-13);
+    } else {
+      result += str.charAt(i);
+    }
+  }
+  return result;
+}
+
+let code = 'EBG13 rknzcyr.';
+
+rot13(code);

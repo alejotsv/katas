@@ -9,10 +9,9 @@
 // The returned "number" should not start with zeros e.g. 0123 is invalid
 
 function multiply(a,b){
-  let intA = parseInt(a);
-  let intB = parseInt(b);
+  let intA = BigInt(a);
+  let intB = BigInt(b);
   let intC = intA*intB;
-
   let c = intC.toString();
   return c;
 }

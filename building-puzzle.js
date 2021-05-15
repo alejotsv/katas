@@ -8,3 +8,23 @@
 
 // Can you write a program that can solve this puzzle?
 
+function solvePuzzle (clues) {
+  
+  // Function to create empty grid
+  function createGrid(){
+    let result = [];
+    let x = 4;
+    let y = 4;
+    for (let i=0;i<x;i++) {
+      let temp = [];
+      for (let j=0;j<y;j++) {
+        temp[j] = 0;
+      }
+      result[i] = temp;
+    }
+    return result;
+  }
+  
+  // Create grid
+  let result = createGrid();
+}

@@ -24,6 +24,19 @@ function solvePuzzle (clues) {
     }
     return result;
   }
+
+  // Function to check if the puzzle is solved
+  function isDone(arr){
+    let done = true;
+    for(let i=0; i<arr.length; i++){
+      let sum = arr[i].reduce((a,b) => a+b, 0);
+      if(sum<10){
+        done = false;
+        break;
+      }    
+    }
+    return done;
+  }
   
   // Create grid
   let result = createGrid();

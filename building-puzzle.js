@@ -12,10 +12,17 @@ function solvePuzzle (clues) {
   let grid = createGrid();
   console.log("Original grid");
   printGrid(grid);
-
+  findFour(clues,grid);
+  console.log("After finding fours");
+  printGrid(grid);
 }
 
-// Create grid with all zeroes
+function printGrid(grid){  
+  for (let i=0;i<grid.length;i++){
+    console.log(grid[i]);
+  }
+}
+
 function createGrid(){
   let result = [];
   let x = 4;
@@ -30,14 +37,6 @@ function createGrid(){
   return result;
 }
 
-// Print grid to test at any step
-function printGrid(grid){  
-  for (let i=0;i<grid.length;i++){
-    console.log(grid[i]);
-  }
-}
-
-// Check if the grid is done
 function isDone(arr){
   let done = true;
   for(let i=0; i<arr.length; i++){
@@ -48,6 +47,45 @@ function isDone(arr){
     }    
   }
   return done;
+}
+
+function findFour(clues, grid){
+  if(clues[0]===1||clues[15]===1){
+    grid[0][0] = 4
+  }
+  if(clues[1]===1){
+    grid[0][1] = 4
+  }
+  if(clues[2]===1){
+    grid[0][2] = 4
+  }
+  if(clues[3]===1||clues[4]===1){
+    grid[0][3] = 4
+  }
+  if(clues[5]===1){
+    grid[1][3] = 4
+  }
+  if(clues[6]===1){
+    grid[2][3] = 4
+  }
+  if(clues[7]===1||clues[8]===1){
+    grid[3][3] = 4
+  }
+  if(clues[9]===1){
+    grid[3][2] = 4
+  }
+  if(clues[10]===1){
+    grid[3][1] = 4
+  }
+  if(clues[11]===1||clues[12]===1){
+    grid[3][0] = 4
+  }
+  if(clues[13]===1){
+    grid[2][0] = 4
+  }
+  if(clues[14]===1){
+    grid[1][0] = 4
+  } 
 }
 
 let clues = [

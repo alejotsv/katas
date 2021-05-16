@@ -50,42 +50,43 @@ function isDone(arr){
 }
 
 function findFour(clues, grid){
-  if(clues[0]===1||clues[15]===1){
-    grid[0][0] = 4
+  
+  let i;  
+  for (i=0; i<4; i++){
+    if(clues[i] === 1){
+      grid[0][i] = 4;
+    }
   }
-  if(clues[1]===1){
-    grid[0][1] = 4
+
+  for (i=4; i<8; i++){
+    if(clues[i] === 1){
+      grid[i-4][3] = 4;
+    }
   }
-  if(clues[2]===1){
-    grid[0][2] = 4
+
+  let j = 3;  
+  for (i=8; i<12; i++){    
+    if(clues[i] === 1){
+      grid[3][j] = 4;
+      j--;
+    } else {
+      j--;
+    }
   }
-  if(clues[3]===1||clues[4]===1){
-    grid[0][3] = 4
+
+  j = 3;
+  for (i=12; i<16; i++){
+    if(clues[i] === 1){
+      grid[j][0] = 4;
+      j--;
+    } else {
+      j--;
+    }
   }
-  if(clues[5]===1){
-    grid[1][3] = 4
-  }
-  if(clues[6]===1){
-    grid[2][3] = 4
-  }
-  if(clues[7]===1||clues[8]===1){
-    grid[3][3] = 4
-  }
-  if(clues[9]===1){
-    grid[3][2] = 4
-  }
-  if(clues[10]===1){
-    grid[3][1] = 4
-  }
-  if(clues[11]===1||clues[12]===1){
-    grid[3][0] = 4
-  }
-  if(clues[13]===1){
-    grid[2][0] = 4
-  }
-  if(clues[14]===1){
-    grid[1][0] = 4
-  } 
+}
+
+function findRow(clues, grid){
+
 }
 
 let clues = [

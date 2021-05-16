@@ -9,35 +9,56 @@
 // Can you write a program that can solve this puzzle?
 
 function solvePuzzle (clues) {
-  
-  // Function to create empty grid
-  function createGrid(){
-    let result = [];
-    let x = 4;
-    let y = 4;
-    for (let i=0;i<x;i++) {
-      let temp = [];
-      for (let j=0;j<y;j++) {
-        temp[j] = 0;
-      }
-      result[i] = temp;
-    }
-    return result;
-  }
+  let grid = createGrid();
+  console.log("Original grid");
+  printGrid(grid);
 
-  // Function to check if the puzzle is solved
-  function isDone(arr){
-    let done = true;
-    for(let i=0; i<arr.length; i++){
-      let sum = arr[i].reduce((a,b) => a+b, 0);
-      if(sum<10){
-        done = false;
-        break;
-      }    
-    }
-    return done;
-  }
-  
-  // Create grid
-  let result = createGrid();
 }
+
+// Create grid with all zeroes
+function createGrid(){
+  let result = [];
+  let x = 4;
+  let y = 4;
+  for (let i=0;i<x;i++) {
+    let temp = [];
+    for (let j=0;j<y;j++) {
+      temp[j] = 0;
+    }
+    result[i] = temp;
+  }
+  return result;
+}
+
+// Print grid to test at any step
+function printGrid(grid){  
+  for (let i=0;i<grid.length;i++){
+    console.log(grid[i]);
+  }
+}
+
+// Check if the grid is done
+function isDone(arr){
+  let done = true;
+  for(let i=0; i<arr.length; i++){
+    let sum = arr[i].reduce((a,b) => a+b, 0);
+    if(sum<10){
+      done = false;
+      break;
+    }    
+  }
+  return done;
+}
+
+let clues = [
+            2, 2, 1, 3,
+            2, 2, 3, 1,
+            1, 2, 2, 3,
+            3, 2, 1, 3
+            ];
+
+
+
+
+
+solvePuzzle(clues);

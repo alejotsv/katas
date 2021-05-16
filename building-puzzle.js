@@ -15,6 +15,9 @@ function solvePuzzle (clues) {
   findFour(clues,grid);
   console.log("After finding fours");
   printGrid(grid);
+  findRow(clues,grid);
+  console.log("After finding rows");
+  printGrid(grid);
 }
 
 function printGrid(grid){  
@@ -86,7 +89,15 @@ function findFour(clues, grid){
 }
 
 function findRow(clues, grid){
-
+  let i;
+  for (i=0; i<4; i++){
+    if(clues[i] === 4){
+      for (let j=0; j<4; j++){        
+        grid[j][i] = j + 1;
+      }
+    }
+  }
+  
 }
 
 let clues = [

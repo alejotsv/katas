@@ -113,6 +113,14 @@ function findRow(clues, grid){
       }
     }
   }
+
+  for (i=12; i<16; i++){
+    if (clues[i] === 4){
+      for(let j=0; j<4; j++){
+        grid[15-i][j] = j + 1;
+      }
+    }
+  }
   
 }
 

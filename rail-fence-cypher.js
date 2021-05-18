@@ -8,3 +8,18 @@
 
 // Each "rail" is then read left to right to derive the encoded string.
 
+let phrase = "This cool phrase";
+let rails = 2;
+
+function encodeRailFenceCipher(string, numberRails) {
+  console.log(string);
+  console.log(rails);
+}
+
+function decodeRailFenceCipher(string, numberRails) {
+  console.log(string);
+  console.log(rails);
+}
+
+encodeRailFenceCipher(phrase, rails);
+decodeRailFenceCipher(phrase,rails);

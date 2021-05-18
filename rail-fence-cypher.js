@@ -19,8 +19,23 @@ function encodeRailFenceCipher(string, numberRails) {
     rows.push("");
   }
   
+  let pos = 0;
+  let up = true;
+
+  for (let j=0; j<string.length; j++){
+    rows[pos] += string[j];
+    if (pos<numberRails-1 && up){
+      pos++;
+    } else if (pos>0){
+      pos--;
+      up = false;
+    } else {
+      pos++;
+      up = true;
+    }
+  }
+
   console.log(rows);
-  console.log(rows.length);  
   
 }
 

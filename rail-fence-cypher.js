@@ -12,7 +12,7 @@ let phrase = "This is a cool phrase";
 let rails = 3;
 
 function encodeRailFenceCipher(string, numberRails) {
-  let encrypted;
+  let encrypted = '';
   let rows = [];
 
   for (let i=0; i<numberRails; i++){
@@ -35,8 +35,11 @@ function encodeRailFenceCipher(string, numberRails) {
     }
   }
 
-  console.log(rows);
+  for (let k=0; k<rows.length; k++) {
+    encrypted += rows[k];
+  }
   
+  return encrypted;
 }
 
 function decodeRailFenceCipher(string, numberRails) {
@@ -46,3 +49,5 @@ function decodeRailFenceCipher(string, numberRails) {
 
 encodeRailFenceCipher(phrase, rails);
 // decodeRailFenceCipher(phrase,rails);
+
+encodeRailFenceCipher('WEAREDISCOVEREDFLEEATONCE', 3);

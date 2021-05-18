@@ -47,7 +47,7 @@ function decodeRailFenceCipher(string, numberRails) {
   console.log(rails);
 }
 
-encodeRailFenceCipher(phrase, rails);
-// decodeRailFenceCipher(phrase,rails);
+let encryptedPhrase = encodeRailFenceCipher(phrase, rails);
+console.log(encryptedPhrase);
 
-encodeRailFenceCipher('WEAREDISCOVEREDFLEEATONCE', 3);
+decodeRailFenceCipher(phrase,rails);

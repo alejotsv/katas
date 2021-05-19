@@ -44,6 +44,14 @@ function encodeRailFenceCipher(string, numberRails) {
 
 function decodeRailFenceCipher(string, numberRails) {
   let decoded = [];
+  let posD = 0;
+  let posS = 0;
+
+  while(posD<string.length){
+    decoded[posD] = string[posS];
+    posD += (numberRails - 1)*2;
+    posS++;
+  }
 
   console.log(decoded);
   

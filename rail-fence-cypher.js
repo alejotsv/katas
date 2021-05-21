@@ -48,18 +48,59 @@ function decodeRailFenceCipher(string, numberRails) {
   let posS = 0;
   let slicer = 0;
 
+  for (let i=0; i<string.length; i++){
+    decoded[i] = "";
+  }
+
   while(posD<string.length){
     decoded[posD] = string[posS];
     posD += (numberRails - 1)*2;
     posS++;
     slicer++;
-    console.log("slicer: " + slicer);
   }
 
-  console.log(decoded);
   string = string.slice(slicer);
-  console.log(string);
+
+  console.log(decoded);
+
+
+// After completing the first line, the rest follow the same pattern: going down = new N * 2; going up = 2.
+// From there, each line is removed and going up increments times 2
+
+  posD = 1;
+  posS = 0;
+  slicer = 0;
+  let varRail = numberRails - 1;
+  let downR = (varRail-1)*2;
+  let upR = 2;
+  let up = false;
+
+  while(string.length>0){
+    if(varRail === 1){
+      decoded[posD] = string[0];
+      posD += (numberRails - 1)*2;
+      string = string.substring(1);
+    }
+    while(posD<decoded.length){
+      if(up){
+        decoded[posD] = string[posS];
+        posS++;
+        posD += upR;
+        up = false;
+        slicer++;
+      } else {
+        decoded[posD] = string[posS];
+        posS++;
+        posD += downR;
+        up = true;
+        slicer++;
+      }      
+    }    
+    string = string.slice(slicer);
+    console.log(string);    
+  }
   
+  console.log(decoded);
 }
 
 let encryptedPhrase = encodeRailFenceCipher(phrase, rails);

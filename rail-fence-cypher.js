@@ -76,18 +76,22 @@ function decodeRailFenceCipher(string, numberRails) {
   let upR = 2;
   let up = false;
 
-  while(string.length>0){
-    console.log("This is my string: " + string);
-    console.log("varRail = " + varRail);
-    console.log("Decoded right before loop: ");
-    console.log(decoded);
+  while(string.length>0){    
     if(varRail === 1){
-      console.log("this is one");
-      decoded[posD] = string[0];
-      posD += (numberRails - 1)*2;
-      console.log("posD after adding to decoded: " + posD);
-      string = string.substring(1);
-      console.log("string after slicing: " + string);
+      let finalLength = string.length;
+      for (let i=0; i<finalLength; i++){
+        console.log("this is one");
+        console.log("posD: " + posD);
+        console.log("string[0]: " + string[0]);
+        decoded[posD] = string[0];
+        posD += (numberRails - 1)*2;
+        console.log("posD after adding to decoded: " + posD);
+        string = string.substring(1);
+        console.log("string after slicing: " + string);
+        console.log(i);
+        console.log(string.length)
+      }
+      
     } else {
         while(posD<decoded.length){
           if(up){
@@ -109,10 +113,8 @@ function decodeRailFenceCipher(string, numberRails) {
 
     varRail--;
     posD = numberRails - 1;
-    console.log("posD = " + posD);
     
-    string = string.slice(slicer);
-    console.log("This is my string after adding: " + string); 
+    string = string.slice(slicer); 
   }
   
   console.log("Final decoded:");

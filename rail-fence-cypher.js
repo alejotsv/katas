@@ -73,25 +73,28 @@ function decodeRailFenceCipher(string, numberRails) {
   let down = true;
   let varRails = numberRails - 2;
   let starter = 1;
+  let upCounter = 1;
   console.log("------------------------")
   console.log("String after first round: " + string);
   console.log("Starter = " + starter);
 
   while(varRails>=1){
     posD = starter;
-    while(posD<string.length){
-      decoded[posD] = string[poS];
+    while(posD<decoded.length){
+      decoded[posD] = string[posS];
       posS++;
       if(down){
         posD += varRails*2;
         down = false;
       } else {
-        posD += 2;
+        posD += 2*upCounter;
         down = true;
       }
     }
     starter++
     varRails--;
+    upCounter++;
+    down = true;
   }
 
   console.log("------------------------")

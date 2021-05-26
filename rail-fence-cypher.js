@@ -97,6 +97,11 @@ function decodeRailFenceCipher(string, numberRails) {
     down = true;
   }
 
+  console.log("Final starter: " + starter);
+  console.log("Final varRails: " + varRails);
+  console.log("Final upCounter: " + upCounter);
+  
+
   console.log("------------------------")
   console.log("Final decoded:");
   console.log(decoded);

@@ -100,7 +100,15 @@ function decodeRailFenceCipher(string, numberRails) {
   console.log("Final starter: " + starter);
   console.log("Final varRails: " + varRails);
   console.log("Final upCounter: " + upCounter);
+  console.log("Final posS: " + posS);
   
+  posD = starter;
+
+  while(posD<decoded.length){
+    decoded[posD] = string[posS];
+    posS++;
+    posD += upCounter*2;
+  }
 
   console.log("------------------------")
   console.log("Final decoded:");

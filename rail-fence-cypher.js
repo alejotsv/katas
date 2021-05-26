@@ -113,6 +113,13 @@ function decodeRailFenceCipher(string, numberRails) {
   console.log("------------------------")
   console.log("Final decoded:");
   console.log(decoded);
+
+  let decodedMessage = '';
+  for(let i=0; i<decoded.length; i++){
+    decodedMessage += decoded[i];
+  }
+  
+  return decodedMessage;
 }
 
 let encryptedPhrase = encodeRailFenceCipher(phrase, rails);

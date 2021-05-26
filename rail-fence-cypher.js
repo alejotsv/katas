@@ -61,9 +61,6 @@ function decodeRailFenceCipher(string, numberRails) {
 
   string = string.slice(slicer);
  
-  console.log("Decoded after first round:");
-  console.log(decoded);
-
 
 // After completing the first line, the rest follow the same pattern: going down = new N * 2; going up = 2.
 // From there, each line is removed and going up increments times 2
@@ -74,9 +71,7 @@ function decodeRailFenceCipher(string, numberRails) {
   let varRails = numberRails - 2;
   let starter = 1;
   let upCounter = 1;
-  console.log("------------------------")
-  console.log("String after first round: " + string);
-  console.log("Starter = " + starter);
+
 
   while(varRails>=1){
     posD = starter;
@@ -97,10 +92,6 @@ function decodeRailFenceCipher(string, numberRails) {
     down = true;
   }
 
-  console.log("Final starter: " + starter);
-  console.log("Final varRails: " + varRails);
-  console.log("Final upCounter: " + upCounter);
-  console.log("Final posS: " + posS);
   
   posD = starter;
 
@@ -110,9 +101,6 @@ function decodeRailFenceCipher(string, numberRails) {
     posD += upCounter*2;
   }
 
-  console.log("------------------------")
-  console.log("Final decoded:");
-  console.log(decoded);
 
   let decodedMessage = '';
   for(let i=0; i<decoded.length; i++){

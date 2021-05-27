@@ -11,7 +11,7 @@
 let phrase = "This is a cool phrase";
 let rails = 3;
 
-function encodeRailFenceCipher(string, numberRails) {
+function encodeRailFenceCipher(string, numberRails) {  
   let encrypted = '';
   let rows = [];
 
@@ -43,6 +43,8 @@ function encodeRailFenceCipher(string, numberRails) {
 }
 
 function decodeRailFenceCipher(string, numberRails) {
+  // Create an array to hold each character from the encrypted string
+  // placing them in the correct order
   let decoded = [];
   let posD = 0;
   let posS = 0;

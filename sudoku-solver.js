@@ -44,7 +44,9 @@ function findInColumn(num, column){
 }
 
 function findInSquare(num, matrix){
-  
+  // TODO: add list of squares
+  // TODO: find coordinates in square
+  // TODO: look for number in square
 }
 
 sudoku(puzzle);

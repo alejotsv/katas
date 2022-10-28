@@ -1,6 +1,8 @@
 function sudoku(puzzle) {
   let isInRow = findInRow(9, 4);
   console.log(isInRow);
+  let isInColumn = findInColumn(2, 0);
+  console.log(isInColumn);
 };
 
 let puzzle = [
@@ -22,7 +24,7 @@ function findInRow(num, row){
   let isInRow = false;
   let arr = puzzle[row];
   for(let i=0; i<9; i++){
-    if(arr[i]==num){
+    if(arr[i] == num){
       isInRow = true;
       i = 9;
     }
@@ -31,8 +33,14 @@ function findInRow(num, row){
 }
 
 function findInColumn(num, column){
-  
-  
+  let isInColumn = false;
+  for(let i=0; i<9; i++){
+    if(puzzle[i][column] == num){
+      isInColumn = true;
+      i = 9;
+    }
+  }
+  return isInColumn;
 }
 
 function findInSquare(num, matrix){

@@ -1,5 +1,6 @@
 function sudoku(puzzle) {
-  findInRow(4, puzzle[0]);
+  let isInRow = findInRow(9, 4);
+  console.log(isInRow);
 };
 
 let puzzle = [
@@ -13,13 +14,24 @@ let puzzle = [
             [0,0,0,4,1,9,0,0,5],
             [0,0,0,0,8,0,0,7,9]];
 
-let possibilities = {};
+let possibilities = {
+  
+};
 
-function findInRow(num, arr){
-  arr.forEach((e) => console.log(e));
+function findInRow(num, row){
+  let isInRow = false;
+  let arr = puzzle[row];
+  for(let i=0; i<9; i++){
+    if(arr[i]==num){
+      isInRow = true;
+      i = 9;
+    }
+  }
+  return isInRow;
 }
 
-function findInColumn(num, matrix){
+function findInColumn(num, column){
+  
   
 }
 

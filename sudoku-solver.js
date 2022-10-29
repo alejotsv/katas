@@ -49,4 +49,27 @@ function findInSquare(num, matrix){
   // TODO: look for number in square
 }
 
-sudoku(puzzle);
+function createGrid(startX, startY){
+  let x = startX;
+  let y;
+  let finalArr;
+  let tempArr;
+
+  for(let i=0; i<3; i++){
+    y = startY;
+    tempArr = [];
+    for(let j=0; j<3; j++){
+      let coor = [x, y];      
+      tempArr.push(coor);
+      console.log(tempArr);
+      y++;
+    }
+    x++;
+  }
+  
+}
+
+createGrid(0, 0)
+
+
+// sudoku(puzzle);

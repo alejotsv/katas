@@ -104,10 +104,21 @@ function setInitialCoordinates(gridNum){
       console.log("Number should be between 1 and 9");
       break;
   }
-  console.log(startCoordinates);
   return startCoordinates;
 }
 
-setInitialCoordinates(5);
+function createAllGrids(){
+  let allGrids = [];
+  let startCoordinates = [];
+  for(let i=1; i<=9; i++){
+    startCoordinates = setInitialCoordinates(i);
+    console.log("Grid " + i);
+    console.log("Initial X: " + startCoordinates[0]);
+    console.log("Initial Y: " + startCoordinates[1]);    
+    console.log("-----------------------");
+  }
+}
+
+createAllGrids();
 
 // sudoku(puzzle);

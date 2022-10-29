@@ -65,11 +65,49 @@ function createGrid(startX, startY){
     }
     x++;
     finalArr.push(tempArr);    
-  }  
+  }
+  console.log(finalArr);
   return finalArr;
 }
 
-createGrid(6, 6)
+function setInitialCoordinates(gridNum){
+  let startCoordinates = [];  
+  switch(gridNum){
+    case 1:
+      startCoordinates = [0,0];
+      break;
+    case 2:
+      startCoordinates = [0,3];
+      break;
+    case 3:
+      startCoordinates = [0,6];
+      break;  
+    case 4:
+      startCoordinates = [3,0];
+      break;
+    case 5:
+      startCoordinates = [3,3];
+      break;
+    case 6:
+      startCoordinates = [3,6];
+      break;
+    case 7:
+      startCoordinates = [6,0];
+      break;
+    case 8:
+      startCoordinates = [6,3];
+      break;
+    case 9:
+      startCoordinates = [6,6];
+      break;
+    default:
+      console.log("Number should be between 1 and 9");
+      break;
+  }
+  console.log(startCoordinates);
+  return startCoordinates;
+}
 
+setInitialCoordinates(5);
 
 // sudoku(puzzle);

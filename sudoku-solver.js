@@ -52,24 +52,24 @@ function findInSquare(num, matrix){
 function createGrid(startX, startY){
   let x = startX;
   let y;
-  let finalArr;
-  let tempArr;
+  let finalArr = [];
+  let tempArr = [];
 
   for(let i=0; i<3; i++){
     y = startY;
     tempArr = [];
     for(let j=0; j<3; j++){
       let coor = [x, y];      
-      tempArr.push(coor);
-      console.log(tempArr);
+      tempArr.push(coor);      
       y++;
     }
     x++;
-  }
-  
+    finalArr.push(tempArr);    
+  }  
+  return finalArr;
 }
 
-createGrid(0, 0)
+createGrid(6, 6)
 
 
 // sudoku(puzzle);

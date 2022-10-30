@@ -46,7 +46,8 @@ function findInColumn(num, column){
 }
 
 // Function to find in which square a set of coordinates is
-function whichSquare(coordinates, grid){
+function whichSquare(coordinates, grid){  
+  let squareFound = false;
   // Initialize variable that will hold the square number of the coordinates
   // Start with invalid value, in case coordinates are incorrect
   let squareNumber = -1;
@@ -55,8 +56,17 @@ function whichSquare(coordinates, grid){
   console.log("Coordinates as string: " + coorStr);
   // Instantiate variable that will hold string version of each square
   let squareStr;
-
-  grid.forEach(square => console.log("Square as string: " + JSON.stringify(square)));
+  
+  grid.every((square, index) => {
+    squareStr = JSON.stringify(square);
+    console.log("Square " + (index+1) + " as string: " + squareStr);
+    
+    if(squareStr.indexOf(coorStr) >= 0){
+      console.log("The coordinates " + coorStr + " are in square " + (index+1));
+      return false;
+    }
+    
+  });
   
 }
 
@@ -141,6 +151,6 @@ function createAllGrids(){
 
 let myGrid = createAllGrids();
 
-whichSquare([0, 2], myGrid);
+whichSquare([6, 6], myGrid);
 
 // sudoku(puzzle);

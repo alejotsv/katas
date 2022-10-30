@@ -1,8 +1,7 @@
 function sudoku(puzzle) {
-  let isInRow = findInRow(9, 4);
-  console.log(isInRow);
-  let isInColumn = findInColumn(2, 0);
-  console.log(isInColumn);
+  let isCompleted = false;
+  puzzleGrid = createAllGrids();
+  
 };
 
 let puzzle = [
@@ -49,20 +48,18 @@ function findInColumn(num, column){
 function whichSquare(coordinates, grid){    
   // Initialize variable that will hold the square number of the coordinates
   // Start with invalid value, in case coordinates are incorrect
-  let squareNumber = -1;
+  let squareIn;
   // Create string version of coordinates to look inside each grid
   let coorStr = JSON.stringify(coordinates);
   console.log("Coordinates as string: " + coorStr);
   // Instantiate variable that will hold string version of each square
   let squareStr;
   
-  grid.every((square, index) => {
-    squareStr = JSON.stringify(square);
-    console.log("Square " + (index+1) + " as string: " + squareStr);
+  grid.every((square) => {
+    squareStr = JSON.stringify(square);    
     
     if(squareStr.indexOf(coorStr) >= 0){      
-      squareNumber = index + 1;
-      console.log("The coordinates " + coorStr + " are in square " + squareNumber);
+      squareIn = square;      
       return false;
     } else {
       return true;
@@ -70,7 +67,7 @@ function whichSquare(coordinates, grid){
     
   });
 
-  return squareNumber
+  return squareIn;
   
 }
 
@@ -153,8 +150,9 @@ function createAllGrids(){
   return allGrids;
 }
 
+// sudoku(puzzle);
+
 let myGrid = createAllGrids();
 
-whichSquare([3, 2], myGrid);
-
-// sudoku(puzzle);
+theSquare = whichSquare([3, 2], myGrid);
+console.log(theSquare);

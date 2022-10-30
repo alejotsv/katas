@@ -20,6 +20,7 @@ let possibilities = {
   
 };
 
+// Function to find a number in a row
 function findInRow(num, row){
   let isInRow = false;
   let arr = puzzle[row];
@@ -32,6 +33,7 @@ function findInRow(num, row){
   return isInRow;
 }
 
+// Function to find a number in a column
 function findInColumn(num, column){
   let isInColumn = false;
   for(let i=0; i<9; i++){
@@ -43,12 +45,19 @@ function findInColumn(num, column){
   return isInColumn;
 }
 
-function findInSquare(num, matrix){
+// Function to find in which square a set of coordinates is
+function whichSquare(coordinates){
+  
+}
+
+// Function to find a number in a square
+function findInSquare(num, square){
   // TODO: add list of squares
   // TODO: find coordinates in square
   // TODO: look for number in square
 }
 
+// Function to create a Sudoku grill, based on the starting coordinates
 function createGrid(startX, startY){
   let x = startX;
   let y;
@@ -70,6 +79,7 @@ function createGrid(startX, startY){
   return finalArr;
 }
 
+// Function to set the initial coordinates for each square in a Sudoku puzzle
 function setInitialCoordinates(gridNum){
   let startCoordinates = [];  
   switch(gridNum){
@@ -107,16 +117,17 @@ function setInitialCoordinates(gridNum){
   return startCoordinates;
 }
 
+// Function to set the coordinates for each square in a Sudoku puzzle
 function createAllGrids(){
   let allGrids = [];
   let startCoordinates = [];
+  let tempGrid = [];
   for(let i=1; i<=9; i++){
     startCoordinates = setInitialCoordinates(i);
-    console.log("Grid " + i);
-    console.log("Initial X: " + startCoordinates[0]);
-    console.log("Initial Y: " + startCoordinates[1]);    
-    console.log("-----------------------");
+    tempGrid = createGrid(startCoordinates[0], startCoordinates[1]);
+    allGrids.push(tempGrid);
   }
+  console.log(allGrids);
 }
 
 createAllGrids();

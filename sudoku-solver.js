@@ -1,9 +1,31 @@
 function sudoku(puzzle) {
   let isCompleted = false;
-  puzzleGrid = createAllGrids();
-  console.log(puzzle[0].indexOf(0));
-  
-};
+  let x;
+  let y;
+  let emptyCellCoor = [];
+  let possibilities = [];
+  let zeroAt;
+  puzzleGrid = createAllGrids();    
+  for(let i=0; i<9; i++){
+    // set x to current row
+    x = i;
+    console.log(puzzle[i]);
+    zeroAt = puzzle[i].indexOf(0);
+    if(zeroAt >= 0){
+      // Set y to empty cell position
+      y = zeroAt;
+      emptyCellCoor = [x, y];
+      console.log(emptyCellCoor)
+      // Check if numbers from 1 to 9 can be in this cell
+      // If there are two possibilities, move to next cell
+      // If there is only one possiblity, replace cell with that value      
+      console.log("First empty cell is at position: " + zeroAt);      
+    } else {
+      console.log("No empty cells here");
+    }
+      
+  }
+}
 
 let puzzle = [
             [5,3,0,0,7,0,0,0,0],
@@ -14,11 +36,8 @@ let puzzle = [
             [7,0,0,0,2,0,0,0,6],
             [0,6,0,0,0,0,2,8,0],
             [0,0,0,4,1,9,0,0,5],
-            [0,0,0,0,8,0,0,7,9]];
-
-let possibilities = {
-  
-};
+            [0,0,0,0,8,0,0,7,9]
+];
 
 // Function to find a number in a row
 function findInRow(num, row){
@@ -166,8 +185,4 @@ function createAllGrids(){
   return allGrids;
 }
 
-// sudoku(puzzle);
-
-let allGrids = createAllGrids();
-let sq = whichSquare([4,0], allGrids);
-findInSquare(4, sq, puzzle);
+sudoku(puzzle);

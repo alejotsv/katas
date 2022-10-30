@@ -46,7 +46,17 @@ function findInColumn(num, column){
 }
 
 // Function to find in which square a set of coordinates is
-function whichSquare(coordinates){
+function whichSquare(coordinates, grid){
+  // Initialize variable that will hold the square number of the coordinates
+  // Start with invalid value, in case coordinates are incorrect
+  let squareNumber = -1;
+  // Create string version of coordinates to look inside each grid
+  let coorStr = JSON.stringify(coordinates);
+  console.log("Coordinates as string: " + coorStr);
+  // Instantiate variable that will hold string version of each square
+  let squareStr;
+
+  grid.forEach(square => console.log("Square as string: " + JSON.stringify(square)));
   
 }
 
@@ -74,8 +84,7 @@ function createGrid(startX, startY){
     }
     x++;
     finalArr.push(tempArr);    
-  }
-  console.log(finalArr);
+  }  
   return finalArr;
 }
 
@@ -126,10 +135,12 @@ function createAllGrids(){
     startCoordinates = setInitialCoordinates(i);
     tempGrid = createGrid(startCoordinates[0], startCoordinates[1]);
     allGrids.push(tempGrid);
-  }
-  console.log(allGrids);
+  }  
+  return allGrids;
 }
 
-createAllGrids();
+let myGrid = createAllGrids();
+
+whichSquare([0, 2], myGrid);
 
 // sudoku(puzzle);

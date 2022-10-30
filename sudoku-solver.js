@@ -5,6 +5,9 @@ function sudoku(puzzle) {
   let emptyCellCoor = [];
   let possibilities = [];
   let zeroAt;
+  let sudokuNumbers = [1,2,3,4,5,6,7,8,9];
+  let numberFound;
+  
   puzzleGrid = createAllGrids();    
   for(let i=0; i<9; i++){
     // set x to current row
@@ -17,6 +20,9 @@ function sudoku(puzzle) {
       emptyCellCoor = [x, y];
       console.log(emptyCellCoor)
       // Check if numbers from 1 to 9 can be in this cell
+      sudokuNumbers.every((number) => {        
+        return findInRow(number, puzzle, i);
+      });
       // If there are two possibilities, move to next cell
       // If there is only one possiblity, replace cell with that value      
       console.log("First empty cell is at position: " + zeroAt);      
@@ -40,7 +46,7 @@ let puzzle = [
 ];
 
 // Function to find a number in a row
-function findInRow(num, row){
+function findInRow(num, puzzle, row){
   let isInRow = false;
   let arr = puzzle[row];
   for(let i=0; i<9; i++){
@@ -53,7 +59,7 @@ function findInRow(num, row){
 }
 
 // Function to find a number in a column
-function findInColumn(num, column){
+function findInColumn(num, puzzle, column){
   let isInColumn = false;
   for(let i=0; i<9; i++){
     if(puzzle[i][column] == num){

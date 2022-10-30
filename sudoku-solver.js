@@ -1,6 +1,7 @@
 function sudoku(puzzle) {
   let isCompleted = false;
   puzzleGrid = createAllGrids();
+  console.log(puzzle[0].indexOf(0));
   
 };
 
@@ -50,8 +51,7 @@ function whichSquare(coordinates, grid){
   // Start with invalid value, in case coordinates are incorrect
   let squareIn;
   // Create string version of coordinates to look inside each grid
-  let coorStr = JSON.stringify(coordinates);
-  console.log("Coordinates as string: " + coorStr);
+  let coorStr = JSON.stringify(coordinates);  
   // Instantiate variable that will hold string version of each square
   let squareStr;
   
@@ -72,10 +72,26 @@ function whichSquare(coordinates, grid){
 }
 
 // Function to find a number in a square
-function findInSquare(num, square){
-  // TODO: add list of squares
-  // TODO: find coordinates in square
-  // TODO: look for number in square
+function findInSquare(num, square, puzzle){
+  console.log(num);
+  let isInSquare = false;
+  let x;
+  let y;
+  let numInSquare;
+  for(let i=0; i<3; i++){    
+    for(let j=0; j<3; j++){      
+      x = square[i][j][0];
+      y = square[i][j][1];      
+      numInSquare = puzzle[x][y];
+      if(numInSquare == num){        
+        isInSquare = true;        
+        break;  
+      }      
+    }
+  }
+  
+  return isInSquare;
+  
 }
 
 // Function to create a Sudoku grill, based on the starting coordinates
@@ -152,7 +168,6 @@ function createAllGrids(){
 
 // sudoku(puzzle);
 
-let myGrid = createAllGrids();
-
-theSquare = whichSquare([3, 2], myGrid);
-console.log(theSquare);
+let allGrids = createAllGrids();
+let sq = whichSquare([4,0], allGrids);
+findInSquare(4, sq, puzzle);

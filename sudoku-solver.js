@@ -42,8 +42,11 @@ function sudoku(puzzle) {
               return true;
             } else {
               console.log("Number " + number + " was not found in square.");
-              possibilities.push(number);              
-              return true;
+              possibilities.push(number);
+              if(possibilities.length<=1){
+                return true;  
+              }
+              return false;
             }
           }
         }        

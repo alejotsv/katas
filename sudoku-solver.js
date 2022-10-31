@@ -1,6 +1,7 @@
 function sudoku(puzzle) {
   let isCompleted = false;
-  let row = 0;
+  let puzzleStr = JSON.stringify(puzzle);
+  let row;
   let x;
   let y;
   let emptyCellCoor = [];
@@ -10,104 +11,129 @@ function sudoku(puzzle) {
   let sudokuNumbers = [1,2,3,4,5,6,7,8,9];
   let numberFound;
   let square;
+  let finalPuzzle;
   
-  puzzleGrid = createAllGrids();  
-
-  while(row<9){
-    console.log("Row: " + row)
-    while(zeroAt>=0 && startIndex<9){
-      for(let i=row; i<row+1; i++){
-        // set x to current row
-        x = i;
-        console.log(puzzle[i]);
-        zeroAt = puzzle[i].indexOf(0, startIndex);
-        startIndex = zeroAt;
-        console.log("checking for cell at position: " + i + "," + zeroAt);
-        if(zeroAt >= 0){
-          // Set y to empty cell position
-          y = zeroAt;
-          emptyCellCoor = [x, y];        
-          // Check if numbers from 1 to 9 can be in this cell
-          sudokuNumbers.every((number) => {
-            numberFound = findInRow(number, puzzle, x);
-            if(numberFound){
-              console.log("Number " + number + " was found in row.");
-              if(number == 9){
-                    console.log("Possible numbers: " + possibilities);
-                    console.log("Updating cell to: " + possibilities[0]);
-                    console.log(puzzle[i]);
-                    puzzle[x][y] = possibilities[0];
-                    console.log(puzzle[i]);
-                  }
-              return true;
-            } else {
-              console.log("Number " + number + " was not found in row; to check column.")
-              numberFound = findInColumn(number, puzzle, y);
+  puzzleGrid = createAllGrids();
+  
+  function doPuzzle(puzzle){
+      row = 0;
+      while(row<9){
+      console.log("Row: " + row)
+      while(zeroAt>=0 && startIndex<9){
+        for(let i=row; i<row+1; i++){
+          // set x to current row
+          x = i;
+          console.log(puzzle[i]);
+          zeroAt = puzzle[i].indexOf(0, startIndex);
+          startIndex = zeroAt;
+          console.log("checking for cell at position: " + i + "," + zeroAt);
+          if(zeroAt >= 0){
+            // Set y to empty cell position
+            y = zeroAt;
+            emptyCellCoor = [x, y];        
+            // Check if numbers from 1 to 9 can be in this cell
+            sudokuNumbers.every((number) => {
+              numberFound = findInRow(number, puzzle, x);
               if(numberFound){
-                console.log("Number " + number + " was found in column.");
+                console.log("Number " + number + " was found in row.");
                 if(number == 9){
-                    console.log("Possible numbers: " + possibilities);
-                    console.log("Updating cell to: " + possibilities[0]);
-                    console.log(puzzle[i]);
-                    puzzle[x][y] = possibilities[0];
-                    console.log(puzzle[i]);
-                  }
+                      console.log("Possible numbers: " + possibilities);
+                      console.log("Updating cell to: " + possibilities[0]);
+                      console.log(puzzle[i]);
+                      puzzle[x][y] = possibilities[0];
+                      console.log(puzzle[i]);
+                    }
                 return true;
               } else {
-                console.log("Number " + number + " was not found in column; to check square.");
-                square = whichSquare(emptyCellCoor, puzzleGrid);
-                // console.log(square);
-                numberFound = findInSquare(number, square, puzzle);
+                console.log("Number " + number + " was not found in row; to check column.")
+                numberFound = findInColumn(number, puzzle, y);
                 if(numberFound){
-                  console.log("Number " + number + " was found in square.");
+                  console.log("Number " + number + " was found in column.");
                   if(number == 9){
-                    console.log("Possible numbers: " + possibilities);
-                    console.log("Updating cell to: " + possibilities[0]);
-                    console.log(puzzle[i]);
-                    puzzle[x][y] = possibilities[0];
-                    console.log(puzzle[i]);
-                  }
+                      console.log("Possible numbers: " + possibilities);
+                      console.log("Updating cell to: " + possibilities[0]);
+                      console.log(puzzle[i]);
+                      puzzle[x][y] = possibilities[0];
+                      console.log(puzzle[i]);
+                    }
                   return true;
                 } else {
-                  console.log("Number " + number + " was not found in square.");
-                  possibilities.push(number);
-                  if(possibilities.length<=1){
+                  console.log("Number " + number + " was not found in column; to check square.");
+                  square = whichSquare(emptyCellCoor, puzzleGrid);
+                  // console.log(square);
+                  numberFound = findInSquare(number, square, puzzle);
+                  if(numberFound){
+                    console.log("Number " + number + " was found in square.");
                     if(number == 9){
-                    console.log("Possible numbers: " + possibilities);
-                    console.log("Updating cell to: " + possibilities[0]);
-                    console.log(puzzle[i]);
-                    puzzle[x][y] = possibilities[0];
-                    console.log(puzzle[i]);
+                      console.log("Possible numbers: " + possibilities);
+                      console.log("Updating cell to: " + possibilities[0]);
+                      console.log(puzzle[i]);
+                      puzzle[x][y] = possibilities[0];
+                      console.log(puzzle[i]);
                     }
-                    return true;  
+                    return true;
                   } else {
-                      console.log("Possible numbers for this cell: " + possibilities + ". Moving on.");
-                      return false;
+                    console.log("Number " + number + " was not found in square.");
+                    possibilities.push(number);
+                    if(possibilities.length<=1){
+                      if(number == 9){
+                      console.log("Possible numbers: " + possibilities);
+                      console.log("Updating cell to: " + possibilities[0]);
+                      console.log(puzzle[i]);
+                      puzzle[x][y] = possibilities[0];
+                      console.log(puzzle[i]);
+                      }
+                      return true;  
+                    } else {
+                        console.log("Possible numbers for this cell: " + possibilities + ". Moving on.");
+                        return false;
+                    }
+  
                   }
-
                 }
-              }
-            }        
-          });       
-          possibilities = [];
-          startIndex++;
-          // If there are two possibilities, move to next cell
-          // If there is only one possiblity, replace cell with that value            
-        } else {
-          console.log("No empty cells here");
+              }        
+            });       
+            possibilities = [];
+            startIndex++;
+            // If there are two possibilities, move to next cell
+            // If there is only one possiblity, replace cell with that value            
+          } else {
+            console.log("No empty cells here");
+          }
+            
         }
-          
+      }
+      row++;    
+      startIndex = 0;
+      zeroAt = 0;
+      if(row == 9){        
+        console.log(puzzle);     
       }
     }
-    row++;    
-    startIndex = 0;
-    zeroAt = 0;
-    if(row == 9){
-      console.log(puzzle);
-    }
+    return puzzle;
   }
-  
 
+  
+  if(puzzleStr.indexOf('0')>=0){
+    console.log("There are zeroes");
+    finalPuzzle = doPuzzle(puzzle);
+    console.log(puzzleStr);
+    console.log(JSON.stringify(finalPuzzle));
+    puzzleStr = JSON.stringify(finalPuzzle);
+  } else {
+    console.log("This is done");
+  }
+
+  while(!isCompleted){    
+    if(puzzleStr.indexOf('0')>=0){
+      finalPuzzle = doPuzzle(puzzle);
+      puzzleStr = JSON.stringify(finalPuzzle);
+    } else {
+        isCompleted =true;
+    } 
+  }    
+        
+  return finalPuzzle; 
   
 }
 
@@ -268,4 +294,4 @@ function createAllGrids(){
   return allGrids;
 }
 
-sudoku(puzzle);
+let newPuzzle = sudoku(puzzle);

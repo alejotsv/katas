@@ -1,5 +1,6 @@
 function sudoku(puzzle) {
   let isCompleted = false;
+  let row = 0;
   let x;
   let y;
   let emptyCellCoor = [];
@@ -12,61 +13,68 @@ function sudoku(puzzle) {
   
   puzzleGrid = createAllGrids();  
 
-  while(zeroAt>=0 && startIndex<9){
-    for(let i=0; i<1; i++){
-      // set x to current row
-      x = i;
-      console.log(puzzle[i]);
-      zeroAt = puzzle[i].indexOf(0, startIndex);
-      startIndex = zeroAt;
-      console.log("checking for cell at position: " + zeroAt);
-      if(zeroAt >= 0){
-        // Set y to empty cell position
-        y = zeroAt;
-        emptyCellCoor = [x, y];
-        console.log(emptyCellCoor)
-        // Check if numbers from 1 to 9 can be in this cell
-        sudokuNumbers.every((number) => {
-          numberFound = findInRow(number, puzzle, x);
-          if(numberFound){
-            console.log("Number " + number + " was found in row.");
-            return true;
-          } else {
-            console.log("Number " + number + " was not found in row; to check column.")
-            numberFound = findInColumn(number, puzzle, y);
+  while(row<9){
+    console.log("Row: " + row)
+    while(zeroAt>=0 && startIndex<9){
+      for(let i=row; i<row+1; i++){
+        // set x to current row
+        x = i;
+        console.log(puzzle[i]);
+        zeroAt = puzzle[i].indexOf(0, startIndex);
+        startIndex = zeroAt;
+        console.log("checking for cell at position: " + i + "," + zeroAt);
+        if(zeroAt >= 0){
+          // Set y to empty cell position
+          y = zeroAt;
+          emptyCellCoor = [x, y];        
+          // Check if numbers from 1 to 9 can be in this cell
+          sudokuNumbers.every((number) => {
+            numberFound = findInRow(number, puzzle, x);
             if(numberFound){
-              console.log("Number " + number + " was found in column.");
+              console.log("Number " + number + " was found in row.");
               return true;
             } else {
-              console.log("Number " + number + " was not found in column; to check square.");
-              square = whichSquare(emptyCellCoor, puzzleGrid);
-              console.log(square);
-              numberFound = findInSquare(number, square, puzzle);
+              console.log("Number " + number + " was not found in row; to check column.")
+              numberFound = findInColumn(number, puzzle, y);
               if(numberFound){
-                console.log("Number " + number + " was found in square.");
+                console.log("Number " + number + " was found in column.");
                 return true;
               } else {
-                console.log("Number " + number + " was not found in square.");
-                possibilities.push(number);
-                if(possibilities.length<=1){
-                  return true;  
+                console.log("Number " + number + " was not found in column; to check square.");
+                square = whichSquare(emptyCellCoor, puzzleGrid);
+                // console.log(square);
+                numberFound = findInSquare(number, square, puzzle);
+                if(numberFound){
+                  console.log("Number " + number + " was found in square.");
+                  return true;
+                } else {
+                  console.log("Number " + number + " was not found in square.");
+                  possibilities.push(number);
+                  if(possibilities.length<=1){
+                    return true;  
+                  }
+                  console.log("Possible numbers for this cell: " + possibilities + ". Moving on.");
+                  return false;
                 }
-                return false;
               }
-            }
-          }        
-        });
-        console.log("Possible numbers for this cell: " + possibilities + ". Moving on.");
-        possibilities = [];
-        startIndex++;
-        // If there are two possibilities, move to next cell
-        // If there is only one possiblity, replace cell with that value            
-      } else {
-        console.log("No empty cells here");
+            }        
+          });       
+          possibilities = [];
+          startIndex++;
+          // If there are two possibilities, move to next cell
+          // If there is only one possiblity, replace cell with that value            
+        } else {
+          console.log("No empty cells here");
+        }
+          
       }
-        
     }
+    row++;    
+    startIndex = 0;
+    zeroAt = 0;
   }
+  
+
   
 }
 

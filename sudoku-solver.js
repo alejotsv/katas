@@ -73,12 +73,18 @@ function sudoku(puzzle) {
                   possibilities.push(number);
                   if(possibilities.length<=1){
                     if(number == 9){
-                      console.log("Possible numbers: " + possibilities)
+                    console.log("Possible numbers: " + possibilities);
+                    console.log("Updating cell to: " + possibilities[0]);
+                    console.log(puzzle[i]);
+                    puzzle[x][y] = possibilities[0];
+                    console.log(puzzle[i]);
                     }
                     return true;  
+                  } else {
+                      console.log("Possible numbers for this cell: " + possibilities + ". Moving on.");
+                      return false;
                   }
-                  console.log("Possible numbers for this cell: " + possibilities + ". Moving on.");
-                  return false;
+
                 }
               }
             }        

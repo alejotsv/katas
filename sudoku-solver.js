@@ -32,12 +32,26 @@ function sudoku(puzzle) {
             numberFound = findInRow(number, puzzle, x);
             if(numberFound){
               console.log("Number " + number + " was found in row.");
+              if(number == 9){
+                    console.log("Possible numbers: " + possibilities);
+                    console.log("Updating cell to: " + possibilities[0]);
+                    console.log(puzzle[i]);
+                    puzzle[x][y] = possibilities[0];
+                    console.log(puzzle[i]);
+                  }
               return true;
             } else {
               console.log("Number " + number + " was not found in row; to check column.")
               numberFound = findInColumn(number, puzzle, y);
               if(numberFound){
                 console.log("Number " + number + " was found in column.");
+                if(number == 9){
+                    console.log("Possible numbers: " + possibilities);
+                    console.log("Updating cell to: " + possibilities[0]);
+                    console.log(puzzle[i]);
+                    puzzle[x][y] = possibilities[0];
+                    console.log(puzzle[i]);
+                  }
                 return true;
               } else {
                 console.log("Number " + number + " was not found in column; to check square.");
@@ -46,11 +60,21 @@ function sudoku(puzzle) {
                 numberFound = findInSquare(number, square, puzzle);
                 if(numberFound){
                   console.log("Number " + number + " was found in square.");
+                  if(number == 9){
+                    console.log("Possible numbers: " + possibilities);
+                    console.log("Updating cell to: " + possibilities[0]);
+                    console.log(puzzle[i]);
+                    puzzle[x][y] = possibilities[0];
+                    console.log(puzzle[i]);
+                  }
                   return true;
                 } else {
                   console.log("Number " + number + " was not found in square.");
                   possibilities.push(number);
                   if(possibilities.length<=1){
+                    if(number == 9){
+                      console.log("Possible numbers: " + possibilities)
+                    }
                     return true;  
                   }
                   console.log("Possible numbers for this cell: " + possibilities + ". Moving on.");
@@ -72,6 +96,9 @@ function sudoku(puzzle) {
     row++;    
     startIndex = 0;
     zeroAt = 0;
+    if(row == 9){
+      console.log(puzzle);
+    }
   }
   
 

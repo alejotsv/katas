@@ -7,9 +7,10 @@ function sudoku(puzzle) {
   let zeroAt;
   let sudokuNumbers = [1,2,3,4,5,6,7,8,9];
   let numberFound;
+  let square;
   
   puzzleGrid = createAllGrids();    
-  for(let i=0; i<9; i++){
+  for(let i=0; i<1; i++){
     // set x to current row
     x = i;
     console.log(puzzle[i]);
@@ -20,9 +21,25 @@ function sudoku(puzzle) {
       emptyCellCoor = [x, y];
       console.log(emptyCellCoor)
       // Check if numbers from 1 to 9 can be in this cell
-      sudokuNumbers.every((number) => {        
-        return findInRow(number, puzzle, i);
-      });
+      sudokuNumbers.every((number) => {
+        numberFound = findInRow(number, puzzle, x);
+        if(numberFound){
+          console.log("Number " + number + " was found in row.");
+          return false;
+        } else {
+          console.log("Number " + number + " was not found in row; to check column.")
+          numberFound = findInColumn(number, puzzle, y);
+          if(numberFound){
+            console.log("Number " + number + " was found in row.");
+            return false;
+          } else {
+            console.log("Number " + number + " was not found in column; to check square.");
+            square = whichSquare(emptyCellCoor, puzzleGrid);
+            console.log(square);
+            numberFound = findInSquare(number, square, puzzle);
+          }
+        }        
+      });      
       // If there are two possibilities, move to next cell
       // If there is only one possiblity, replace cell with that value      
       console.log("First empty cell is at position: " + zeroAt);      

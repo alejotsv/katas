@@ -25,24 +25,32 @@ function sudoku(puzzle) {
         numberFound = findInRow(number, puzzle, x);
         if(numberFound){
           console.log("Number " + number + " was found in row.");
-          return false;
+          return true;
         } else {
           console.log("Number " + number + " was not found in row; to check column.")
           numberFound = findInColumn(number, puzzle, y);
           if(numberFound){
-            console.log("Number " + number + " was found in row.");
-            return false;
+            console.log("Number " + number + " was found in column.");
+            return true;
           } else {
             console.log("Number " + number + " was not found in column; to check square.");
             square = whichSquare(emptyCellCoor, puzzleGrid);
             console.log(square);
             numberFound = findInSquare(number, square, puzzle);
+            if(numberFound){
+              console.log("Number " + number + " was found in square.");
+              return true;
+            } else {
+              console.log("Number " + number + " was not found in square.");
+              possibilities.push(number);              
+              return true;
+            }
           }
         }        
-      });      
+      });
+      console.log("Possible numbers for this cell: " + possibilities);
       // If there are two possibilities, move to next cell
-      // If there is only one possiblity, replace cell with that value      
-      console.log("First empty cell is at position: " + zeroAt);      
+      // If there is only one possiblity, replace cell with that value            
     } else {
       console.log("No empty cells here");
     }
@@ -114,8 +122,7 @@ function whichSquare(coordinates, grid){
 }
 
 // Function to find a number in a square
-function findInSquare(num, square, puzzle){
-  console.log(num);
+function findInSquare(num, square, puzzle){  
   let isInSquare = false;
   let x;
   let y;

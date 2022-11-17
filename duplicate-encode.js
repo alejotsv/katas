@@ -6,18 +6,20 @@ Ignore capitalization when determining if a character is a duplicate.
 */
 
 function duplicateEncode(word){
-  console.log(word);
   let encodedWord = word.toLowerCase();
+  let letter;
   
   for(let i=0; i<encodedWord.length; i++) {
-    if(encodedWord[i]!=")" && encodedWord[i]!=")"){
-        // if(encodedWord.indexOf(word[i],i+1)>=0){
-        //   console.log(word[i]);
-      console.log(encodedWord[i]);
+    letter = encodedWord[i];
+    if(letter!=")" && letter!=")"){
+      if(encodedWord.indexOf(letter,i+1)>=0){
+        encodedWord = encodedWord.replace(new RegExp(letter, "g"),")");        
+      } else {
+        encodedWord = encodedWord.replace(letter,"(");
+      }
+
     }
   }
+  console.log(encodedWord);
   return encodedWord;
 }
-
-
-duplicateEncode("cEllphone");

@@ -6,5 +6,19 @@ Ignore capitalization when determining if a character is a duplicate.
 */
 
 function duplicateEncode(word){
-  // ...
+  console.log(word);
+  let encodedWord = word.split("");
+  for([i,letter] of encodedWord.entries()) {
+    if(letter==")" || letter==")"){
+      continue;
+    } else{
+      if(encodedWord.indexOf(letter,i+1)>=0){
+        console.log(letter);
+      }
+    }
+  }
+  return encodedWord.toString();
 }
+
+
+duplicateEncode("cellphone");

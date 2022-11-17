@@ -7,18 +7,17 @@ Ignore capitalization when determining if a character is a duplicate.
 
 function duplicateEncode(word){
   console.log(word);
-  let encodedWord = word.split("");
-  for([i,letter] of encodedWord.entries()) {
-    if(letter==")" || letter==")"){
-      continue;
-    } else{
-      if(encodedWord.indexOf(letter,i+1)>=0){
-        console.log(letter);
-      }
+  let encodedWord = word.toLowerCase();
+  
+  for(let i=0; i<encodedWord.length; i++) {
+    if(encodedWord[i]!=")" && encodedWord[i]!=")"){
+        // if(encodedWord.indexOf(word[i],i+1)>=0){
+        //   console.log(word[i]);
+      console.log(encodedWord[i]);
     }
   }
-  return encodedWord.toString();
+  return encodedWord;
 }
 
 
-duplicateEncode("cellphone");
+duplicateEncode("cEllphone");

@@ -43,7 +43,6 @@ function duplicateEncode(word){
 
     }
   }
-  console.log(encodedWord);
   return encodedWord;
 }
 

@@ -7,26 +7,38 @@ Ignore capitalization when determining if a character is a duplicate.
 
 function duplicateEncode(word){
   let encodedWord = word.toLowerCase();
-  let letter;
+  let character;
   let regex;
+  let specialChar = [".", "+", "*", "?", "^", "$", "(", ")", "[", "]", "{", "}", "|", "\\"];
+
+  // Check for parentheses   
+  let parentheses = ["(", ")"];
+  for( par of parentheses ){
+    let regexPar = new RegExp("\\" + par, "g");
+    if(encodedWord.match(regexPar)){      
+      if(encodedWord.match(regexPar).length>1){
+        encodedWord = encodedWord.replace(regexPar,")");
+      } else{
+        encodedWord = encodedWord.replace(regex,"(");
+      }
+    }
+  }
   
+  // Create regex based on whether it contains special characters
   for(let i=0; i<encodedWord.length; i++) {
-    letter = encodedWord[i];
-    if(letter==")" || letter==")"){
-      regex = new RegExp("\\" + letter, "g");
+    character = encodedWord[i];
+    if(specialChar.indexOf(character)>=0){
+      regex = new RegExp("\\" + character, "g");
     } else {
-      regex = new RegExp(letter, "g"); 
-    }  
+      regex = new RegExp(character, "g"); 
+    }    
     
-    if(letter!=")" && letter!=")"){
+    // Check matches for any character except parentheses
+    if(character!=")" && character!="("){
       if(encodedWord.match(regex).length>1){
-        console.log(letter);
-        console.log(encodedWord.match(regex));
         encodedWord = encodedWord.replace(regex,")");        
       } else {
-        console.log(letter);
-        console.log(encodedWord.match(regex));
-        encodedWord = encodedWord.replace(letter,"(");
+        encodedWord = encodedWord.replace(character,"(");
       }
 
     }
@@ -38,12 +50,10 @@ function duplicateEncode(word){
 
 duplicateEncode("din");
 duplicateEncode("recede");
-// duplicateEncode("Success");
-// duplicateEncode("(( @");
+duplicateEncode("Success");
+duplicateEncode("(( @");
 
 // "din"      =>  "((("
 // "recede"   =>  "()()()"
 // "Success"  =>  ")())())"
 // "(( @"     =>  "))((" 
-
-

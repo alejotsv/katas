@@ -8,13 +8,24 @@ Ignore capitalization when determining if a character is a duplicate.
 function duplicateEncode(word){
   let encodedWord = word.toLowerCase();
   let letter;
+  let regex;
   
   for(let i=0; i<encodedWord.length; i++) {
     letter = encodedWord[i];
+    if(letter==")" || letter==")"){
+      regex = new RegExp("\\" + letter, "g");
+    } else {
+      regex = new RegExp(letter, "g"); 
+    }  
+    
     if(letter!=")" && letter!=")"){
-      if(encodedWord.indexOf(letter,i+1)>=0){
-        encodedWord = encodedWord.replace(new RegExp(letter, "g"),")");        
+      if(encodedWord.match(regex).length>1){
+        console.log(letter);
+        console.log(encodedWord.match(regex));
+        encodedWord = encodedWord.replace(regex,")");        
       } else {
+        console.log(letter);
+        console.log(encodedWord.match(regex));
         encodedWord = encodedWord.replace(letter,"(");
       }
 
@@ -23,3 +34,16 @@ function duplicateEncode(word){
   console.log(encodedWord);
   return encodedWord;
 }
+
+
+duplicateEncode("din");
+duplicateEncode("recede");
+// duplicateEncode("Success");
+// duplicateEncode("(( @");
+
+// "din"      =>  "((("
+// "recede"   =>  "()()()"
+// "Success"  =>  ")())())"
+// "(( @"     =>  "))((" 
+
+

@@ -16,7 +16,9 @@ Hint: Trying using slice() and .toUpperCase()
 */
 
 function capitalizeWord(word){
-  
+  let firstLetter  = word.charAt(0).toUpperCase();
+  let finalWord = firstLetter + word.slice(1);
+  return finalWord;
 }
 
 /* 
@@ -25,7 +27,24 @@ How can you reuse the function you just wrote?
 */ 
 
 function toTitleCase(str){
+  let finalStr = "";
+  let start = 0;
+  let word;
+  let end = str.indexOf(" ");
+  do {
+      if (end == -1){
+          word = capitalizeWord(str.slice(start));
+      } else {
+          word = capitalizeWord(str.slice(start, end));
+          start = end+1;
+          end = str.indexOf(" ", start);
+      }
+      finalStr += word + " ";
+  } while (end > -1);
   
+  finalStr += capitalizeWord(str.slice(start));
+  
+  return finalStr;
 }
 
 // Test your functions
